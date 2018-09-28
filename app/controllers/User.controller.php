@@ -164,7 +164,13 @@ class User extends Admin
 								
 								$lastID = $UserModel->save($form_data);
 								if($lastID){
-								
+									
+									$data['id'] = $lastID;
+									$update_alcc = array(
+										'alccid'		        =>"ALCC".$lastID,
+									);
+									$result1 = $UserModel->update(array_merge($update_alcc,$data));
+									
 									if(!empty($_POST['medical_history'])){
 										
 										$opts = array();

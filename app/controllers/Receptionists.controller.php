@@ -478,6 +478,11 @@ class Receptionists extends Admin
 								
 								$lastID = $UserModel->save($form_data);
 								if($lastID){
+									$data['id'] = $lastID;
+									$update_alcc = array(
+										'alccid'		        =>"ALCC".$lastID,
+									);
+									$result1 = $UserModel->update(array_merge($update_alcc,$data));
 									$error['success'] = "New User Created";
 									$this->complteBooking($_POST,$lastID);
 									// echo json_encode($error);
